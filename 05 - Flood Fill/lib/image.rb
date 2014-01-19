@@ -10,14 +10,18 @@ class Image
   end
 
   def flood_fill(x, y, post_color, pre_color)
-    # View README.md for instructions
+    @pixels[pixel_index(x, y)] = post_color
+    flood_fill(x+1, y, post_color, pre_color) if @pixels[pixel_index(x+1, y)] == pre_color
+    flood_fill(x-1, y, post_color, pre_color) if @pixels[pixel_index(x-1, y)] == pre_color
+    flood_fill(x, y+1, post_color, pre_color) if @pixels[pixel_index(x, y+1)] == pre_color
+    flood_fill(x, y-1, post_color, pre_color) if @pixels[pixel_index(x, y-1)] == pre_color
   end
 
   private
 
   def pixel_index(x, y)
-    # You'll want to use this method to look up the index of a pixel on an Image.
-    # Hint:
-    #  - This should return an index based on the width and height
+    index = @width * (y - 1) + x - 1
   end
+
 end
+

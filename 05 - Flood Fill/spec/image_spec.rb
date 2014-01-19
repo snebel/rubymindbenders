@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe Image do
   before :each do
@@ -16,7 +17,7 @@ describe Image do
   end
 
   it 'changes pixels with flood_fills' do
-    @image.flood_fill(3, 3, 'green')
+    @image.flood_fill(3, 3, 'green', 'blue')
     expect(@image.display).to eq(
       [["blue", "blue", "blue",  "blue",  "blue", "blue"],
        ["blue",  "red",  "red",   "red",   "red",  "blue"],
