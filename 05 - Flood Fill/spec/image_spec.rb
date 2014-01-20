@@ -16,7 +16,7 @@ describe Image do
     @image = Image.new(width, height, pixels)
   end
 
-  it 'changes pixels with flood_fills' do
+  it 'changes inner section with flood_fills' do
     @image.flood_fill(3, 3, 'green', 'blue')
     expect(@image.display).to eq(
       [["blue", "blue", "blue",  "blue",  "blue", "blue"],
@@ -25,6 +25,30 @@ describe Image do
        ["blue",  "red",  "green", "green", "red",  "blue"],
        ["blue",  "red",  "red",   "red",   "red",  "blue"],
        ["blue",  "blue", "blue",  "blue",  "blue", "blue"]]
+    )
+  end
+
+  it 'changes outer section with flood_fills' do
+    @image.flood_fill(1, 1, 'green', 'blue')
+    expect(@image.display).to eq(
+      [['green', 'green', 'green', 'green', 'green', 'green'],
+       ['green', 'red',  'red',  'red',  'red',  'green'],
+       ['green', 'red',  'blue', 'blue', 'red',  'green'],
+       ['green', 'red',  'blue', 'blue', 'red',  'green'],
+       ['green', 'red',  'red',  'red',  'red',  'green'],
+       ['green', 'green', 'green', 'green', 'green', 'green']]
+    )
+  end
+
+  it 'changes another inner section with flood_fills' do
+    @image.flood_fill(2, 2, 'green', 'red')
+    expect(@image.display).to eq(
+      [['blue', 'blue', 'blue', 'blue', 'blue', 'blue'],
+      ['blue', 'green',  'green',  'green',  'green',  'blue'],
+      ['blue', 'green',  'blue', 'blue', 'green',  'blue'],
+      ['blue', 'green',  'blue', 'blue', 'green',  'blue'],
+      ['blue', 'green',  'green',  'green',  'green',  'blue'],
+      ['blue', 'blue', 'blue', 'blue', 'blue', 'blue']]
     )
   end
 end
